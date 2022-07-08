@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AreaCalculator
 {
-    internal class Triangle : IShape
+    public class Triangle : IShape
     {
         public double A { get; init; }
         public double B { get; init; }
