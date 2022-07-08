@@ -13,6 +13,8 @@ namespace AreaCalculator
         public double C { get; init; }
         public Triangle(double a, double b, double c)
         {
+            if (a <= 0 || b <= 0 || c <= 0)
+                throw new ArgumentException("Sides of triangle must be more than 0");
             A = a;
             B = b;
             C = c;

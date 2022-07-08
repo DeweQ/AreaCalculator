@@ -11,6 +11,8 @@ namespace AreaCalculator
         public double Radius { get; init; }
         public Circle(double radius)
         {
+            if (radius <= 0)
+                throw new ArgumentException("Radius of a circle must be more than 0");
             Radius = radius;
         }
 

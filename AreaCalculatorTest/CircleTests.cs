@@ -8,7 +8,6 @@ namespace AreaCalculatorTest
     {
         [Test]
         [TestCase(6, 113.09)]
-        [TestCase(0, 0)]
         [TestCase(1, Math.PI)]
         public void CircleArea_ShouldWork(double radius, double expected)
         {
