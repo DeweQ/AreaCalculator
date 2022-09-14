@@ -16,9 +16,9 @@ namespace AreaCalculator
             Radius = radius;
         }
 
-        public double Area
+        public double GetArea()
         {
-            get => Math.PI * Math.Pow(Radius, 2);
+            return Math.PI * Math.Pow(Radius, 2);
         }
     }
 }

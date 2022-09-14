@@ -22,17 +22,6 @@ namespace AreaCalculator
 
         private double SemiPerimeter => (A + B + C) / 2;
 
-        public double Area
-        {
-            get
-            {
-
-                if (IsRight()) return GetAreaOfRightTriangle();
-                return GetAreaOfAnyTriangle();
-
-            }
-        }
-
         private double GetAreaOfAnyTriangle()
         {
             double sp = SemiPerimeter;
@@ -82,6 +71,15 @@ namespace AreaCalculator
                A2 * C2 == B2 ||
                B2 * C2 == A2;
             return result;
+        }
+
+        public double GetArea()
+        {
+            if (IsRight())
+            {
+                return GetAreaOfRightTriangle();
+            }
+            return GetAreaOfAnyTriangle();
         }
     }
 }
