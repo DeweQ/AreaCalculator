@@ -34,7 +34,7 @@ namespace AreaCalculator
         /// </summary>
         /// <param name="result">If succeeded, initialise new right triangle. Otherwise null.</param>
         /// <returns>Returns was attempt successful or not.</returns>
-        public bool TryConvertToRightTriangle( out RightTriangle result)
+        public bool TryConvertToRightTriangle(out RightTriangle result)
         {
             result = null;
             if (A == B && A == C)
