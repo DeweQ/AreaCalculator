@@ -22,64 +22,42 @@ namespace AreaCalculator
 
         private double SemiPerimeter => (A + B + C) / 2;
 
-        private double GetAreaOfAnyTriangle()
+        private double CalculateArea()
         {
             double sp = SemiPerimeter;
             double result = Math.Sqrt(sp * (sp - A) * (sp - B) * (sp - C));
             return result;
         }
 
-        // much more calculations than three sides formula. probably better without it
-        private double GetAreaOfRightTriangle()
+        /// <summary>
+        /// Attempt to convert this triangle to Right Triangle.
+        /// </summary>
+        /// <param name="result">If succeeded, initialise new right triangle. Otherwise null.</param>
+        /// <returns>Returns was attempt successful or not.</returns>
+        public bool TryConvertToRightTriangle( out RightTriangle result)
         {
-            double result = 0;
-            switch (FindHypotenuse())
-            {
-                case 'A':
-                    result = B * C / 2;
-                    break;
-                case 'B':
-                    result = A * C / 2;
-                    break;
-                case 'C':
-                    result = A * B / 2;
-                    break;
-            }
-            return result;
-        }
-
-        private char FindHypotenuse()
-        {
-            var A2 = Math.Pow(A, 2);
-            var B2 = Math.Pow(B, 2);
-            var C2 = Math.Pow(C, 2);
-            if (A2 * B2 == C2)
-                return 'C';
-            if (A2 * C2 == B2)
-                return 'B';
-            return 'A';
-        }
-
-        private bool IsRight()
-        {
+            result = null;
             if (A == B && A == C)
                 return false;
-            var A2 = Math.Pow(A, 2);
-            var B2 = Math.Pow(B, 2);
-            var C2 = Math.Pow(C, 2);
-            bool result = A2 * B2 == C2 ||
-               A2 * C2 == B2 ||
-               B2 * C2 == A2;
-            return result;
+            var sides = new[] { A, B, C };
+            var hypotenuse = sides.Max();
+            var legs = sides.Where(s => s != hypotenuse).ToArray();
+            // if c^2 = a^2+b^2 triangle is right.
+            if (Math.Pow(hypotenuse, 2) == legs.Select(l => Math.Pow(l, 2)).Sum())
+            {
+                result = new RightTriangle(hypotenuse, legs[0], legs[1]);
+                return true;
+            }
+            return false;
         }
 
         public double GetArea()
         {
-            if (IsRight())
+            if (TryConvertToRightTriangle(out RightTriangle rightTriangle))
             {
-                return GetAreaOfRightTriangle();
+                return rightTriangle.GetArea();
             }
-            return GetAreaOfAnyTriangle();
+            return CalculateArea();
         }
     }
 }
