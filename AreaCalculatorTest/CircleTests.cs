@@ -13,7 +13,7 @@ namespace AreaCalculatorTest
         {
             Circle circle = new Circle(radius);
 
-            double actual = circle.Area;
+            double actual = circle.GetArea();
 
             Assert.AreEqual(expected, actual, 0.01);
         }

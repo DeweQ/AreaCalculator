@@ -14,7 +14,7 @@ namespace AreaCalculatorTest
         {
             Triangle triangle= new Triangle(a,b,c);
 
-            double actual = triangle.Area;
+            double actual = triangle.GetArea();
 
             Assert.AreEqual(expected, actual, 0.01);
         }
