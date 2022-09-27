@@ -12,7 +12,7 @@ namespace AreaCalculatorTest
     public class IShapeTests
     {
         [Test]
-        public void IShapeTester()
+        public void CalculatorCalculateArea_ShouldWork()
         {
             List<(IShape Shape,double Expected)> tesetCases = new List<(IShape, double)> 
             { 
@@ -29,13 +29,13 @@ namespace AreaCalculatorTest
 
             foreach(var testCase in tesetCases)
             {
-                IShapeGetArea_ShouldWork(testCase.Shape,testCase.Expected);
+                AssertShape(testCase.Shape,testCase.Expected);
             }
 
         }
-        private void IShapeGetArea_ShouldWork(IShape shape, double expected)
+        private void AssertShape(IShape shape, double expected)
         {
-            double actual = shape.GetArea();
+            double actual = Calculator.CalculateArea(shape);
 
             Assert.AreEqual(expected, actual,0.1);
         }
